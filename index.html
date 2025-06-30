@@ -608,12 +608,14 @@
                 font-size: 2rem;
             }
             .carousel-container {
-                padding: 1rem 0;
+                padding: 0;
             }
     
             .carousel-wrapper {
+                width: 100vw;
+                max-width: 100vw;
+                margin: 0;
                 aspect-ratio: 4/3;
-                width: 90%;
             }
     
             .swiper-container {
@@ -965,6 +967,27 @@
       }
       .image-container {
         background-size: 300% !important;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .features .container,
+      .carousel-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+      }
+      .carousel-wrapper {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        aspect-ratio: 4/3;
+      }
+      .swiper-container {
+        inset: 5% 11.5%;
+        width: 77%;
+        height: 80%;
       }
     }
     </style>
