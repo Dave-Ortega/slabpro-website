@@ -6,6 +6,7 @@
     <title>SlabPro - Modern Web App Platform</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.15/swiper-bundle.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/logo.png">
     <style>
         * {
             margin: 0;
@@ -449,29 +450,108 @@
 
         /* Responsive Design */
         @media screen and (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .logo {
                 height: 22px;
             }
             .logo img {
                 height: 22px;
             }
-
+            .nav-links, .nav-actions {
+                display: none !important;
+            }
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                margin-left: 1rem;
+                z-index: 1100;
+            }
+            .menu-bar {
+                width: 28px;
+                height: 3px;
+                background: #222;
+                margin: 4px 0;
+                border-radius: 2px;
+                transition: all 0.3s;
+            }
+            .mobile-menu-overlay {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(237,237,237,0.98);
+                z-index: 2000;
+                transition: opacity 0.3s;
+                opacity: 0;
+                pointer-events: none;
+            }
+            .mobile-menu-overlay.open {
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .mobile-menu-close {
+                position: absolute;
+                top: 24px;
+                right: 24px;
+                background: none;
+                border: none;
+                font-size: 2.5rem;
+                color: #222;
+                cursor: pointer;
+                z-index: 2100;
+            }
+            .mobile-nav-links {
+                list-style: none;
+                padding: 0;
+                margin: 0 0 2.5rem 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            .mobile-nav-links li a {
+                font-size: 1.5rem;
+                color: #222;
+                text-decoration: none;
+                font-weight: 600;
+                transition: color 0.2s;
+            }
+            .mobile-nav-links li a:hover {
+                color: #ff6b35;
+            }
+            .mobile-nav-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 1.2rem;
+                width: 80vw;
+                max-width: 320px;
+                align-items: center;
+            }
+            .mobile-nav-actions .btn {
+                width: 100%;
+                font-size: 1.1rem;
+                padding: 1.1rem 0;
+            }
             .hero h1 {
                 font-size: 2.5rem;
             }
-
             .hero p {
                 font-size: 1rem;
             }
-
             .section-header-title {
                 font-size: 2rem;
             }
-
             .carousel-container {
                 padding: 1rem 0;
             }
@@ -500,6 +580,11 @@
 
             .about-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+        @media screen and (min-width: 769px) {
+            .mobile-menu-overlay {
+                display: none !important;
             }
         }
 
@@ -820,6 +905,11 @@
                 <img src="images/logo.png" alt="SlabPro Logo" class="logo-icon" />
                 <span class="logo-text">SlabPro</span>
             </div>
+            <button class="menu-toggle" aria-label="Open menu">
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+                <span class="menu-bar"></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#final-cta">Pricing</a></li>
                 <li><a href="#features">Features</a></li>
@@ -831,6 +921,20 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+      <ul class="mobile-nav-links">
+        <li><a href="#final-cta">Pricing</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+      <div class="mobile-nav-actions">
+        <button class="btn btn-white nav-btn">Log in</button>
+        <button class="btn btn-orange nav-btn">Sign up</button>
+      </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -1083,6 +1187,29 @@
           }, 500);
         }
         setInterval(fadeToNextTestimonial, 3000);
+
+        // Mobile menu overlay logic
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.getElementById('mobileMenuOverlay');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        function openMobileMenu() {
+          mobileMenu.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+          mobileMenu.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+        menuToggle.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        // Close menu when clicking a link or button in the overlay
+        document.querySelectorAll('.mobile-menu-overlay a, .mobile-menu-overlay button.btn').forEach(el => {
+          el.addEventListener('click', closeMobileMenu);
+        });
+        // Optional: close menu if clicking outside content (not on close button or menu)
+        mobileMenu.addEventListener('click', function(e) {
+          if (e.target === mobileMenu) closeMobileMenu();
+        });
     </script>
 </body>
 </html>
