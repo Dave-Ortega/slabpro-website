@@ -701,6 +701,7 @@
         .faq-card-header {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             margin-bottom: 1.5rem;
         }
@@ -826,6 +827,11 @@
             padding-left: 1rem;
             padding-right: 1rem;
             box-sizing: border-box;
+            min-height: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
           .testimonial-stars-absolute {
             position: static;
@@ -874,7 +880,9 @@
         }
         @media (max-width: 700px) {
           .final-cta-subtitle {
-            font-size: 1.1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            box-sizing: border-box;
           }
           .final-cta-buttons {
             flex-direction: column;
