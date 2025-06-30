@@ -363,6 +363,14 @@
             flex-direction: column;
             align-items: center;
             min-height: 260px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1), box-shadow 0.3s, border 0.3s;
+        }
+
+        .about-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .about-card:hover {
@@ -371,16 +379,23 @@
             box-shadow: 0 4px 16px rgba(30,41,59,0.10);
         }
 
+        .about-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
         .about-check {
             font-size: 1.5rem;
             color: #22c55e;
-            margin-bottom: 0.5rem;
-            display: block;
+            display: inline-block;
+            margin-top: 0.15em;
         }
 
         .about-card h3 {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
             color: #1e293b;
         }
 
@@ -1186,33 +1201,45 @@
             </div>
             <div class="about-grid">
                 <div class="about-card">
-                    <span class="about-check">✅</span>
-                    <h3>Perfect for All Job Sizes</h3>
+                    <div class="about-header">
+                        <span class="about-check">✅</span>
+                        <h3>Perfect for All Job Sizes</h3>
+                    </div>
                     <p>Whether you're bidding on custom residential countertops or large commercial projects, SlabPro helps you create accurate estimates effortlessly.</p>
                 </div>
                 <div class="about-card">
-                    <span class="about-check">✅</span>
-                    <h3>Save Time and Resources</h3>
+                    <div class="about-header">
+                        <span class="about-check">✅</span>
+                        <h3>Save Time and Resources</h3>
+                    </div>
                     <p>Reduce manual paperwork and administrative tasks, so you can focus on growing your business.</p>
                 </div>
                 <div class="about-card">
-                    <span class="about-check">✅</span>
-                    <h3>User-Friendly Interface</h3>
+                    <div class="about-header">
+                        <span class="about-check">✅</span>
+                        <h3>User-Friendly Interface</h3>
+                    </div>
                     <p>With an intuitive design, SlabPro is easy to learn and seamlessly fits into your current workflow.</p>
                 </div>
                 <div class="about-card">
-                    <span class="about-check">✅</span>
-                    <h3>Enhance Accuracy</h3>
+                    <div class="about-header">
+                        <span class="about-check">✅</span>
+                        <h3>Enhance Accuracy</h3>
+                    </div>
                     <p>Minimize errors with precise calculations, ensuring all material and labor costs are accurately accounted for.</p>
                 </div>
                 <div class="about-card">
-                    <span class="about-check">✅</span>
-                    <h3>Streamline Your Estimating Process</h3>
+                    <div class="about-header">
+                        <span class="about-check">✅</span>
+                        <h3>Streamline Your Estimating Process</h3>
+                    </div>
                     <p>Generate detailed bids quickly, allowing you to respond to clients faster and win more contracts.</p>
                 </div>
                 <div class="about-card">
-                    <span class="about-check">✅</span>
-                    <h3>Easy to Learn</h3>
+                    <div class="about-header">
+                        <span class="about-check">✅</span>
+                        <h3>Easy to Learn</h3>
+                    </div>
                     <p>SlabPro is designed for simplicity—most users are up and running in minutes, with no steep learning curve.</p>
                 </div>
             </div>
@@ -1369,6 +1396,23 @@
         mobileMenu.addEventListener('click', function(e) {
           if (e.target === mobileMenu) closeMobileMenu();
         });
+    </script>
+    <script>
+      // Intersection Observer for about cards
+      document.addEventListener('DOMContentLoaded', function() {
+        const aboutCards = document.querySelectorAll('.about-card');
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              obs.unobserve(entry.target); // Only animate once
+            }
+          });
+        }, {
+          threshold: 0.2 // Trigger when 20% of the card is visible
+        });
+        aboutCards.forEach(card => observer.observe(card));
+      });
     </script>
 </body>
 </html>
