@@ -813,6 +813,32 @@
                 font-size: 1.5rem;
             }
         }
+        @media (max-width: 700px) {
+          .testimonial-laurel-single {
+            display: none !important;
+          }
+          .testimonial-quote-block-on-laurel {
+            position: static;
+            width: 100%;
+            max-width: 100%;
+            transform: none;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            box-sizing: border-box;
+          }
+          .testimonial-stars-absolute {
+            position: static;
+            transform: none;
+            margin-bottom: 2rem;
+            margin-top: 0.5rem;
+            justify-content: center;
+          }
+          .testimonial-laurel-wrapper {
+            min-height: unset;
+            padding: 1.5rem 0 0 0;
+          }
+        }
 
         /* New Feature List and Final CTA Section */
         .final-features-section {
@@ -984,6 +1010,11 @@
       }
       .image-container {
         background-size: 450% !important;
+        pointer-events: none;
+        touch-action: none;
+        -webkit-user-drag: none;
+        user-select: none;
+        overscroll-behavior: none;
       }
     }
 
@@ -1129,14 +1160,11 @@
       <div class="testimonial-container single-laurel">
         <h2 class="section-header-title">What Our Customers Say</h2>
         <div class="testimonial-laurel-wrapper">
-          <div class="laurel-stars-wrapper">
-            <img src="images/laurel.svg" alt="Laurel" class="testimonial-laurel-single" />
-            <div class="testimonial-stars-absolute">
-              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-            </div>
-          </div>
           <div class="testimonial-quote-block-on-laurel">
             <p class="testimonial-quote" id="testimonial-quote">I can't believe how simple this has made our quoting process, we're so glad SlabPro reached out to us!</p>
+          </div>
+          <div class="testimonial-stars-absolute">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
           </div>
         </div>
       </div>
