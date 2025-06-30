@@ -18,6 +18,7 @@
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
+            background: #ededed;
         }
 
         /* Navigation */
@@ -25,8 +26,8 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: #ededed;
+            box-shadow: none;
             z-index: 1000;
             padding: 1rem 0;
             transition: all 0.3s ease;
@@ -36,14 +37,17 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             padding: 0 2rem;
         }
 
         .logo {
             height: 40px;
             width: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .logo img {
@@ -52,21 +56,98 @@
             object-fit: contain;
         }
 
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #222;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 0.2rem;
+        }
+
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
+            margin: 0 2rem;
+            flex: 1;
+            justify-content: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
+            color: #222;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
             color: #ff6b35;
+        }
+
+        /* Unified Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            box-shadow: 0 1px 4px rgba(30,41,59,0.04);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s, transform 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .final-cta-buttons .btn,
+        .cta-buttons-row .btn {
+            height: 64px;
+        }
+        .nav-btn {
+            padding: 0.8rem 1.4rem;
+            font-size: 1rem;
+            font-weight: 600;
+            height: auto;
+        }
+        .btn > * {
+            vertical-align: middle;
+        }
+        .btn-white {
+            background: #fff;
+            color: #111;
+        }
+        .btn-orange {
+            background: #ff6b35;
+            color: #fff;
+            border-color: #ff6b35;
+        }
+        .btn-white:hover {
+            background: #f3f3f3;
+            color: #111;
+            border: 2px solid #111;
+            box-shadow: 0 4px 16px rgba(30,41,59,0.10);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .btn-orange:hover {
+            background: #fff;
+            color: #ff6b35;
+            border: 2px solid #ff6b35;
+            box-shadow: 0 4px 16px rgba(30,41,59,0.10);
+            transform: translateY(-2px) scale(1.03);
+        }
+        @media (max-width: 700px) {
+          .btn {
+            width: 100%;
+            font-size: 1rem;
+            padding: 1rem 0;
+          }
         }
 
         /* Hero Section */
@@ -94,6 +175,28 @@
             z-index: 1;
         }
 
+        .image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-size: 150%;
+            background-position: top left;
+            animation: pan 25s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        @keyframes pan {
+            0% {
+                background-position: top left;
+            }
+            100% {
+                background-position: bottom right;
+            }
+        }
+
         .hero-content {
             position: relative;
             z-index: 2;
@@ -114,28 +217,60 @@
             opacity: 0.9;
         }
 
+        .cta-buttons-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 1.5rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cta-button-white {
+            display: inline-block;
+            background: #fff;
+            color: #111;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s, transform 0.3s;
+            border: 2px solid transparent;
+            box-shadow: 0 1px 4px rgba(30,41,59,0.04);
+        }
+
+        .cta-button-white:hover {
+            background: #f3f3f3;
+            color: #111;
+            border: 2px solid #111;
+            box-shadow: 0 4px 16px rgba(30,41,59,0.10);
+            transform: translateY(-2px) scale(1.03);
+        }
+
         .cta-button {
             display: inline-block;
             background: #ff6b35;
             color: white;
             padding: 1rem 2rem;
-            border-radius: 50px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s, transform 0.3s;
             border: 2px solid #ff6b35;
+            box-shadow: 0 1px 4px rgba(30,41,59,0.04);
         }
 
         .cta-button:hover {
-            background: transparent;
+            background: #fff;
             color: #ff6b35;
-            transform: translateY(-2px);
+            border: 2px solid #ff6b35;
+            box-shadow: 0 4px 16px rgba(30,41,59,0.10);
+            transform: translateY(-2px) scale(1.03);
         }
 
         /* Features Section */
         .features {
-            padding: 5rem 0;
-            background: #f8fafc;
+            padding: 3rem 0;
+            background: #ededed;
         }
 
         .container {
@@ -146,14 +281,15 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
         }
 
-        .section-header h2 {
+        .section-header-title {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: #1e293b;
+            text-align: center;
         }
 
         .section-header p {
@@ -164,31 +300,12 @@
         }
 
         /* Existing Slider Styles - Preserved */
-        .image-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-            background-size: 150%;
-            background-position: top left;
-            animation: pan 15s ease-in-out infinite;
-        }
-        
-        @keyframes pan {
-            0% {
-                background-position: top left;
-            }
-            100% {
-                background-position: bottom right;
-            }
-        }
-
         .carousel-container {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 2rem 0;
+            padding: 1rem 0;
         }
     
         .carousel-wrapper {
@@ -234,7 +351,7 @@
         /* About Section */
         .about {
             padding: 5rem 0;
-            background: white;
+            background: #ededed;
         }
 
         .about-grid {
@@ -246,16 +363,29 @@
 
         .about-card {
             text-align: center;
-            padding: 2rem;
+            padding: 2rem 1.2rem;
             border-radius: 12px;
-            background: #f8fafc;
-            transition: transform 0.3s ease;
-            border: 2px solid transparent;
+            background: #ededed;
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            border: 2px solid #ededed;
+            box-shadow: 0 1px 4px rgba(30,41,59,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 260px;
         }
 
         .about-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.03);
             border-color: #ff6b35;
+            box-shadow: 0 4px 16px rgba(30,41,59,0.10);
+        }
+
+        .about-check {
+            font-size: 1.5rem;
+            color: #22c55e;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
         .about-card h3 {
@@ -266,6 +396,8 @@
 
         .about-card p {
             color: #64748b;
+            font-size: 1.05rem;
+            margin-bottom: 0;
         }
 
         /* CTA Section */
@@ -292,7 +424,7 @@
             background: white;
             color: #ff6b35;
             padding: 1rem 2rem;
-            border-radius: 50px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -336,7 +468,7 @@
                 font-size: 1rem;
             }
 
-            .section-header h2 {
+            .section-header-title {
                 font-size: 2rem;
             }
 
@@ -370,6 +502,314 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* FAQ Section */
+        .faq-section {
+            background: #ededed;
+            padding: 5rem 0 4rem;
+        }
+        .faq-comparison {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .faq-card {
+            background: #ededed;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px 0 rgba(30,41,59,0.06);
+            flex: 1 1 350px;
+            min-width: 320px;
+            max-width: 500px;
+            padding: 2.5rem 2rem 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
+            /* min-height: 480px; */
+            /* height: 100%; */
+        }
+        .faq-card.slabpro {
+            border-color: #ff6b35;
+            position: relative;
+            background: #fff;
+        }
+        .faq-card.others {
+            background: #f6f6f6;
+        }
+        .faq-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .faq-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+        .faq-card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #222;
+        }
+        .faq-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+        .faq-icon {
+            font-size: 1.25rem;
+            margin-right: 0.7rem;
+            vertical-align: middle;
+        }
+        .faq-check {
+            color: #22c55e;
+        }
+        .faq-x {
+            color: #ef4444;
+        }
+        @media (max-width: 900px) {
+            .faq-comparison {
+                flex-direction: column;
+                gap: 2.5rem;
+            }
+            .faq-card {
+                max-width: 100%;
+            }
+        }
+
+        /* Customer Testimonial Section */
+        .testimonial-section {
+            background: #ededed;
+            padding: 4.5rem 0 4rem;
+        }
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .testimonial-laurel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 380px;
+            flex-direction: column;
+        }
+        .laurel-stars-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .testimonial-stars-absolute {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%) translateY(12px);
+            font-size: 2.5rem;
+            color: #111;
+            letter-spacing: 0.3rem;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            pointer-events: none;
+        }
+        .testimonial-quote-block-on-laurel {
+            position: absolute;
+            top: 44%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 48%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .testimonial-quote {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #222;
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+            transition: opacity 0.5s;
+        }
+        .testimonial-fade {
+            opacity: 0;
+        }
+        @media (max-width: 900px) {
+            .testimonial-laurel-wrapper {
+                min-height: 200px;
+            }
+            .testimonial-stars-absolute {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* New Feature List and Final CTA Section */
+        .final-features-section {
+          background: #ededed;
+          padding: 0 0 4rem 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .final-cta-container {
+          margin-top: 2.5rem;
+          text-align: center;
+        }
+        .final-cta-subtitle {
+          font-size: 1.6rem;
+          font-weight: 600;
+          color: #222;
+          margin-bottom: 2.5rem;
+          line-height: 1.3;
+        }
+        .final-cta-buttons {
+          display: flex;
+          gap: 24px;
+          justify-content: center;
+          align-items: center;
+          margin-top: 0.5rem;
+        }
+        .arrow {
+          font-size: 1.2em;
+          margin-left: 0.5em;
+          vertical-align: middle;
+          line-height: 1;
+        }
+        @media (max-width: 700px) {
+          .final-cta-subtitle {
+            font-size: 1.1rem;
+          }
+          .final-cta-buttons {
+            flex-direction: column;
+            gap: 14px;
+          }
+          .final-btn {
+            width: 100%;
+            font-size: 1rem;
+            padding: 1rem 0;
+          }
+        }
+        .hide-on-mobile {
+          display: inline;
+        }
+        @media (max-width: 600px) {
+          .hide-on-mobile {
+            display: none;
+          }
+        }
+        .nav-btn.btn-white {
+            background: #fff;
+            color: #222;
+            border: none;
+        }
+        .nav-btn.btn-white:hover {
+            background: #f3f3f3;
+        }
+        .nav-btn.btn-orange {
+            background: #ff6b35;
+            color: #fff;
+            border: none;
+        }
+        .nav-btn.btn-orange:hover {
+            background: #e65a1a;
+        }
+        .section-subheader {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            color: #222;
+        }
+        @media screen and (max-width: 768px) {
+            .section-subheader {
+                font-size: 1.1rem;
+            }
+        }
+        .testimonial-laurel-single {
+            width: 675px;
+            max-width: 88vw;
+            height: auto;
+            display: block;
+            z-index: 1;
+        }
+        @media (max-width: 900px) {
+            .testimonial-laurel-single {
+                width: 89vw;
+                max-width: 88vw;
+            }
+        }
+            /* Keyframes for the animated gradient */
+    @keyframes animatedgradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Styles for elements with the GradientText class */
+    .GradientText {
+        /* You can specify font-size here if needed */
+        background-image: linear-gradient(60deg,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82
+        ) !important;
+        background-size: 300% 300% !important;
+        background-repeat: no-repeat !important;
+        animation: animatedgradient 6s ease infinite alternate !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        color: transparent !important;
+        /* Override Bubble's default styles */
+        text-shadow: none !important;
+    }
+
+    /* Increased specificity and adjusted background properties for buttons */
+    body .GradientButton {
+        color: #ffffff !important; /* Set text color to white */
+        cursor: pointer !important;
+        border: none !important; /* Remove default border */
+        background-image: linear-gradient(60deg,
+            #f79533,
+            #f37055,
+            #ef4e7b,
+            #a166ab,
+            #5073b8,
+            #1098ad,
+            #07b39b,
+            #6fba82
+        ) !important;
+        background-size: 300% 300% !important;
+        background-repeat: no-repeat !important;
+        animation: animatedgradient 6s ease infinite alternate !important;
+        /* Override Bubble's default styles */
+        box-shadow: none !important;
+        text-shadow: none !important;
+        overflow: hidden !important;
+        margin: 0 !important; /* Reset margins */
+    }
     </style>
   </head>
 <body>
@@ -377,23 +817,31 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <img src="images/logo_side_text.png" alt="SlabPro Logo" />
+                <img src="images/logo.png" alt="SlabPro Logo" class="logo-icon" />
+                <span class="logo-text">SlabPro</span>
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#final-cta">Pricing</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="/blog">Blog</a></li>
             </ul>
+            <div class="nav-actions">
+                <button class="btn btn-white nav-btn">Log in</button>
+                <button class="btn btn-orange nav-btn">Sign up</button>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="image-container" style="background-image: url('images/hero-final.jpg');"></div>
         <div class="hero-content">
-            <h1>Transform Your Workflow with SlabPro</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-            <a href="#features" class="cta-button">Explore Features</a>
+            <h1 class="GradientText">Countertop Estimating Made Easy: Anywhere, Any Device</h1>
+            <p>Ditch expensive estimating software. SlabPro offers premium countertop quoting and layout tools for professionals for just $1/day, contract-free.</p>
+            <div class="cta-buttons-row">
+                <a href="#final-cta" class="btn btn-white">Features and Pricing</a>
+                <a href="#features" class="btn btn-orange">Explore Features</a>
+            </div>
         </div>
     </section>
 
@@ -401,11 +849,9 @@
     <section id="features" class="features">
         <div class="container">
             <div class="section-header">
-                <h2>Powerful Features</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h2 class="section-header-title">Powerful Features</h2>
+                <p>Familiar takeoff tools, all in one place.</p>
             </div>
-            
-            <!-- Your existing slider - preserved exactly as is -->
             <div class="carousel-container">
                 <div class="carousel-wrapper">
                     <img class="laptop-background" src="images/laptop.svg" alt="Laptop Background" />
@@ -427,43 +873,116 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="section-header-title">Frequently Asked Questions</h2>
+        <p class="section-subheader">How does SlabPro compare to other countertop estimating software?</p>
+        <div class="faq-comparison">
+          <div class="faq-card slabpro">
+            <div class="faq-card-header">
+              <img src="images/logo.png" alt="SlabPro Logo" class="faq-logo" />
+              <span class="faq-card-title">SlabPro</span>
+            </div>
+            <ul class="faq-list">
+              <li><span class="faq-icon faq-check">✅</span> Simple pricing at just $30/month, no hidden fees or complicated licensing. Cancel anytime.</li>
+              <li><span class="faq-icon faq-check">✅</span> Streamlined, user-friendly interface designed to maximize productivity.</li>
+              <li><span class="faq-icon faq-check">✅</span> Hassle-free setup—no sales calls required. Create an account and get started immediately.</li>
+              <li><span class="faq-icon faq-check">✅</span> Full data ownership—export your data whenever you need, with no restrictions.</li>
+              <li><span class="faq-icon faq-check">✅</span> Quicker and more efficient than manual takeoffs.</li>
+              <li><span class="faq-icon faq-check">✅</span> No installation needed—access SlabPro from any device, anywhere, through your browser.</li>
+            </ul>
+          </div>
+          <div class="faq-card others">
+            <div class="faq-card-header">
+              <span class="faq-card-title">Others</span>
+            </div>
+            <ul class="faq-list">
+              <li><span class="faq-icon faq-x">❌</span> Complicated and costly licensing structure.</li>
+              <li><span class="faq-icon faq-x">❌</span> Time consuming drawing interfaces and non-standard takeoff forms.</li>
+              <li><span class="faq-icon faq-x">❌</span> Requires scheduling a call with sales consultants for setup.</li>
+              <li><span class="faq-icon faq-x">❌</span> Most limited to desktop use only.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Testimonial Section -->
+    <section class="testimonial-section">
+      <div class="testimonial-container single-laurel">
+        <h2 class="section-header-title">What Our Customers Say</h2>
+        <div class="testimonial-laurel-wrapper">
+          <div class="laurel-stars-wrapper">
+            <img src="images/laurel.svg" alt="Laurel" class="testimonial-laurel-single" />
+            <div class="testimonial-stars-absolute">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+          </div>
+          <div class="testimonial-quote-block-on-laurel">
+            <p class="testimonial-quote" id="testimonial-quote">I can't believe how simple this has made our quoting process, we're so glad SlabPro reached out to us!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2>Why Choose SlabPro?</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h2 class="section-header-title">Why Choose SlabPro?</h2>
             </div>
             <div class="about-grid">
                 <div class="about-card">
-                    <h3>Easy to Use</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <span class="about-check">✅</span>
+                    <h3>Perfect for All Job Sizes</h3>
+                    <p>Whether you're bidding on custom residential countertops or large commercial projects, SlabPro helps you create accurate estimates effortlessly.</p>
                 </div>
                 <div class="about-card">
-                    <h3>Powerful Features</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <span class="about-check">✅</span>
+                    <h3>Save Time and Resources</h3>
+                    <p>Reduce manual paperwork and administrative tasks, so you can focus on growing your business.</p>
                 </div>
                 <div class="about-card">
-                    <h3>24/7 Support</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <span class="about-check">✅</span>
+                    <h3>User-Friendly Interface</h3>
+                    <p>With an intuitive design, SlabPro is easy to learn and seamlessly fits into your current workflow.</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-check">✅</span>
+                    <h3>Enhance Accuracy</h3>
+                    <p>Minimize errors with precise calculations, ensuring all material and labor costs are accurately accounted for.</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-check">✅</span>
+                    <h3>Streamline Your Estimating Process</h3>
+                    <p>Generate detailed bids quickly, allowing you to respond to clients faster and win more contracts.</p>
+                </div>
+                <div class="about-card">
+                    <span class="about-check">✅</span>
+                    <h3>Easy to Learn</h3>
+                    <p>SlabPro is designed for simplicity—most users are up and running in minutes, with no steep learning curve.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Get Started?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <a href="#contact" class="cta-button-secondary">Get Started Today</a>
+    <!-- New Feature List and Final CTA Section -->
+    <section class="final-features-section" id="final-cta">
+      <div class="final-cta-container">
+        <h2 class="section-header-title">Still Not Convinced?</h2>
+        <p class="final-cta-subtitle">Try SlabPro risk-free for 7 days. If it's not the right fit for your business, we'll give you a full refund—<br class="hide-on-mobile">no questions asked.</p>
+        <div class="final-cta-buttons">
+          <a href="#final-cta" class="btn btn-white">Features and Pricing</a>
+          <a href="#final-cta" class="btn btn-orange">Sign Up For $1 per day <span class="arrow">&#8594;</span></a>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 SlabPro. All rights reserved. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>&copy; 2025 SlabPro. All rights reserved.</p>
         </div>
     </footer>
 
@@ -531,6 +1050,39 @@
                 }
             });
         });
+
+        const testimonials = [
+          {
+            quote: "I can't believe how simple this has made our quoting process, we're so glad SlabPro reached out to us!",
+            stars: 5
+          },
+          {
+            quote: "SlabPro has saved us hours every week. The interface is so intuitive and easy to use!",
+            stars: 5
+          },
+          {
+            quote: "We switched from another software and never looked back. The pricing is straightforward and the support is fantastic.",
+            stars: 5
+          },
+          {
+            quote: "No more complicated installs or sales calls. We were up and running in minutes. Highly recommend!",
+            stars: 5
+          }
+        ];
+        let testimonialIndex = 0;
+        const quoteEl = document.getElementById('testimonial-quote');
+        function showTestimonial(idx) {
+          quoteEl.textContent = testimonials[idx].quote;
+        }
+        function fadeToNextTestimonial() {
+          quoteEl.classList.add('testimonial-fade');
+          setTimeout(() => {
+            testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+            showTestimonial(testimonialIndex);
+            quoteEl.classList.remove('testimonial-fade');
+          }, 500);
+        }
+        setInterval(fadeToNextTestimonial, 3000);
     </script>
 </body>
 </html>
